@@ -1,7 +1,7 @@
 # Menu-Randomizer-Final
 ------------------------------------------------------
 
-This is the latest version of my Menu project. It was originally built for COP 2006 Programming II and is currently being corrected in terms of security for CEN 3078 Computer Security.
+This is the latest version of my Menu project. It was originally built for COP 3003 Programming II and is currently being corrected in terms of security for CEN 3078 Computer Security.
 
 # Project Reason
 ------------------------------------------------------
