@@ -4,17 +4,14 @@
 
 #include <iostream>
 
-using namespace std;
-
-
 
 class Salad : virtual public Starter {
-    int saladPrice[100] = { 11, 14, 15, 15, 15 };
-    string saladName[100] = { "Caesar Salad", "California Cobb", "Asian Shrimp Salad",
+    std::vector<int> saladPrice = { 11, 14, 15, 15, 15 };
+    std::vector<std::string> saladName = { "Caesar Salad", "California Cobb", "Asian Shrimp Salad",
                         "Wedge Salad", "Spinach Salad" };
 
-    int randPrice[100];
-    string randSalad[100];
+    std::vector<int> randPrice = {};
+    std::vector<std::string> randSalad = {};
     int countSalad = 5;
     int temp;
 
@@ -22,20 +19,20 @@ public:
 
     void add_salad() {
 
-        string input;
-        cin.ignore();
-        cout << "What is the new starter? (enter name): ";
-        getline(cin, input); // Getline rather than cin to read spaces
+        std::string input;
+        std::cin.ignore();
+        std::cout << "What is the new starter? (enter name): ";
+        std::getline(std::cin, input); // Getline rather than cin to read spaces
         saladName[countSalad] = input;
 
 
-        cout << "What is its price? ";
-        getline(cin, input);
+        std::cout << "What is its price? ";
+        std::getline(std::cin, input);
         int temp_price = stoi(input); // "casts" the input string to int
         saladPrice[countSalad] = temp_price; // sets price to that temp value
 
         // output edited menu item for user
-        cout << "Here is the new menu item: " << saladName[countSalad] << ": $" << saladPrice[countSalad] << endl;
+        std::cout << "Here is the new menu item: " << saladName[countSalad] << ": $" << saladPrice[countSalad] << std::endl;
 
         countSalad++;
 
@@ -45,18 +42,18 @@ public:
     void remove_salad() {
 
         if (countSalad == 0) { // if there's nothing to remove
-            cout << "Error: no starters to remove!" << endl;
+            std::cout << "Error: no starters to remove!" << std::endl;
         }
         else {
 
-            cout << "Enter Existing Starter item (enter its numerical index): ";
-            cin >> temp;
+            std::cout << "Enter Existing Starter item (enter its numerical index): ";
+            std::cin >> temp;
 
             if (temp == countSalad) { // removing last item can just be done by not listing it
                 countSalad--;
             }
             else if (temp > countSalad || temp < 1) { // if index is out of bounds
-                cout << "Error: index out of bounds." << endl;
+                std::cout << "Error: index out of bounds." << std::endl;
             }
             else {
 
@@ -73,25 +70,25 @@ public:
     }
 
     void edit_salad() { // Edits an entry in the starter list
-        string input;
+        std::string input;
 
         if (countSalad == 0) { // if there's nothing to edit
-            cout << "Error: no starters to edit!" << endl;
+            std::cout << "Error: no starters to edit!" << std::endl;
         }
         else {
-            cout << "Enter Existing Starter item (enter its numerical index): ";
-            cin >> temp;
+            std::cout << "Enter Existing Starter item (enter its numerical index): ";
+            std::cin >> temp;
 
-            cin.ignore(); // prevents the later getline from consuming the \n
+            std::cin.ignore(); // prevents the later getline from consuming the \n
 
             if (temp > countSalad || temp < 1) { // if index is out of bounds
-                cout << "Error: index out of bounds." << endl;
+                std::cout << "Error: index out of bounds." << std::endl;
             }
             else {
                 temp -= 1; // changes 0-based indexing to 1-based
 
-                cout << "Edit name? (Enter name or 'n' for no): ";
-                getline(cin, input); // Getline rather than cin to read spaces
+                std::cout << "Edit name? (Enter name or 'n' for no): ";
+                std::getline(std::cin, input); // Getline rather than cin to read spaces
 
                 if (input == "n") { // do nothing if user doesn't want to change name
 
@@ -100,8 +97,8 @@ public:
                     saladName[temp] = input; // otherwise change name
                 }
 
-                cout << "Edit price? (Enter price or 'n' for no): ";
-                getline(cin, input);
+                std::cout << "Edit price? (Enter price or 'n' for no): ";
+                std::getline(std::cin, input);
 
                 if (input == "n") {
 
@@ -113,7 +110,7 @@ public:
                 }
 
                 // output edited menu item for user
-                cout << "Here is the updated menu item: " << saladName[temp] << ": $" << saladPrice[temp] << endl;
+                std::cout << "Here is the updated menu item: " << saladName[temp] << ": $" << saladPrice[temp] << std::endl;
             }
         }
 
@@ -129,7 +126,7 @@ public:
         for (int i = 0; i < countSalad; i++) {
             temp = rand() % countSalad; // generate an index (to swap)
 
-            string tempElement = randSalad[temp]; // generate a temporary place to put the index-th element
+            std::string tempElement = randSalad[temp]; // generate a temporary place to put the index-th element
             int tempPrice = randPrice[temp];
 
             randSalad[temp] = randSalad[i]; // swap the ith element with the random index
@@ -141,18 +138,18 @@ public:
     }
 
     void display_salad() {
-        cout << "Random Salads:\n" << endl;
+        std::cout << "Random Salads:\n" << std::endl;
         for (int i = 0; i < 3; i++)
 
-            cout << randSalad[i] << " $" << randPrice[i] << endl << endl;
+            std::cout << randSalad[i] << " $" << randPrice[i] << std::endl << std::endl;
     }
 
     void show_salad() {   //Displaying all items in starter array
         for (int i = 0; i < countSalad; i++) {
 
-            cout << endl;
+            std::cout << std::endl;
 
-            cout << i + 1 << ". " << saladName[i] << " $" << saladPrice[i] << endl;
+            std::cout << i + 1 << ". " << saladName[i] << " $" << saladPrice[i] << std::endl;
 
         }
     }
