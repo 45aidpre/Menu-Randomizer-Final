@@ -12,7 +12,6 @@
 #include "Menu.h"
 #include "Interface.h"
 
-using namespace std;
 
 class newUser {
 public:
@@ -29,7 +28,7 @@ public:
         return hash;
     }
 
-    bool getUsers(string userEntered) {
+    bool getUsers(std::string userEntered) {
 
         for (auto item : s1) {
 
@@ -40,7 +39,7 @@ public:
         return false;
     }
 
-    bool getPass(string passEntered) {
+    bool getPass(std::string passEntered) {
 
         for (auto item : s2) {
 
@@ -52,24 +51,24 @@ public:
     }
 
     bool loginCreationAttempt() {
-        string userCode;
-        cout << "Enter Company Code: ";
-        cin >> userCode;
+        std::string userCode;
+        std::cout << "Enter Company Code: ";
+        std::cin >> userCode;
 
         if (compCode.compare(userCode) == 0) {
             //ask for username and password
-            cout << "Enter New Username and Password.\n Username: ";
-            cin >> userAttempt;
-            s1.push_back(to_string(hashPassword(userAttempt)));
-            cout << "Enter Passord: ";
-            cin >> passAttempt;
-            s2.push_back(to_string(hashPassword(passAttempt)));
+            std::cout << "Enter New Username and Password.\n Username: ";
+            std::cin >> userAttempt;
+            s1.push_back(std::to_string(hashPassword(userAttempt)));
+            std::cout << "Enter Passord: ";
+            std::cin >> passAttempt;
+            s2.push_back(std::to_string(hashPassword(passAttempt)));
 
             return true;
         }
         else {
 
-            cout << "Wrong Code" << "\n";
+            std::cout << "Wrong Code" << "\n";
 
             return false;
 
@@ -80,22 +79,23 @@ public:
 
     
 private:
-    string userAttempt;
-    string passAttempt;
-    vector<string> s1;
-    vector<string> s2;
-    string compCode = "8510";
+    std::string userAttempt; 
+    std::string passAttempt;
+    std::pair<std::string, std::string> s3;
+    std::vector<std::string> s1;
+    std::vector<std::string> s2;
+    std::string compCode = "8510";
 };
 bool login(newUser& Obj1) {
-    string isNew;
-    string userName;
-    string passWord;
+    std::string isNew;
+    std::string userName;
+    std::string passWord;
 
 
     //checks if the user already has an account
-    cout << "Do you have an account? (y/n)\n";
-    getline(cin >> ws, isNew);
-    transform(isNew.begin(), isNew.end(), isNew.begin(), ::tolower); // transforms to lower case
+    std::cout << "Do you have an account? (y/n)\n";
+    getline(std::cin >> std::ws, isNew);
+    std::transform(isNew.begin(), isNew.end(), isNew.begin(), ::tolower); // transforms to lower case
 
 
     if (isNew == "n" || isNew == "no") {
@@ -106,19 +106,19 @@ bool login(newUser& Obj1) {
     }
     else {
 
-        cout << "Enter Your Username\nUsername: ";
-        cin >> userName;
-        userName = to_string(Obj1.hashPassword(userName));
-        cout << "Enter Your Password\nPassword: ";
-        cin >> passWord;
-        passWord = to_string(Obj1.hashPassword(passWord));
+        std::cout << "Enter Your Username\nUsername: ";
+        std::cin >> userName;
+        userName = std::to_string(Obj1.hashPassword(userName));
+        std::cout << "Enter Your Password\nPassword: ";
+        std::cin >> passWord;
+        passWord = std::to_string(Obj1.hashPassword(passWord));
         if (Obj1.getUsers(userName) && Obj1.getPass(passWord)) { //Compare together fix later
 
             return true;
 
         }
 
-        cout << "Wrong Username and Password Combination" << "\n";
+        std::cout << "Wrong Username and Password Combination" << "\n";
 
         return false;
 
