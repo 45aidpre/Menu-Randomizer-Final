@@ -4,28 +4,25 @@
 
 #include <iostream>
 
-using namespace std;
-
-
 class Interface : public Menu { //Display Interface giving the user the options for Menu editing and production
 
-    int option;
+    int option{};
 
 public:
 
     void summon_interface() {
 
 
-        cout << "Please enter a single option: " << endl;
-        cout << "Enter:  \n 1: Add Menu Item \n 2: Remove Menu Item \n 3: Change Menu Item \n 4: Produce Menu \n 5: Display Menu Items \n 6: Quit Program" << endl;
-        cin >> option;
+        std::cout << "Please enter a single option: \n";
+        std::cout << "Enter:  \n 1: Add Menu Item \n 2: Remove Menu Item \n 3: Change Menu Item \n 4: Produce Menu \n 5: Display Menu Items \n 6: Quit Program" << std::endl;
+        std::cin >> option;
 
         if (option == 1) { //Adding Items to the Menu which do not already exist
 
             int option2;
-            cout << "Please select the type of item: \n";
-            cout << "1: Starter \n 2: Salad \n 3: Classic \n";
-            cin >> option2;
+            std::cout << "Please select the type of item: \n";
+            std::cout << "1: Starter \n 2: Salad \n 3: Classic \n";
+            std::cin >> option2;
 
             if (option2 == 1) {
 
@@ -46,19 +43,24 @@ public:
 
                 summon_interface();
             }
-            else {
+            else {      //Catch incorrect inputs
 
-                cout << "Incorrect Input: Returning to Main Menu!" << endl;
+                std::cin.clear();   
 
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+                std::cout << "Incorrect Input: Please Returning to Menu" << std::endl;
+               
                 summon_interface();
+
             }
         }
         else if (option == 2) { //Placement for Remove Function
 
             int option5;
-            cout << "Please select the type of item: \n";
-            cout << "1: Starter \n 2: Salad \n 3: Classic \n";
-            cin >> option5;
+            std::cout << "Please select the type of item: \n";
+            std::cout << "1: Starter \n 2: Salad \n 3: Classic \n";
+            std::cin >> option5;
 
             if (option5 == 1) {
 
@@ -81,18 +83,25 @@ public:
             }
             else {
 
-                cout << "Incorrect Input: Returning to Main Menu!" << endl;
+                std::cin.clear();
+
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+                std::cout << "Incorrect Input: Returning to Main Menu!" << std::endl;
+
 
                 summon_interface();
+
+
             }
         }
 
         else if (option == 3) { //Editing specific items stored
 
             int option3;
-            cout << "Please select the type of item: \n";
-            cout << "1: Starter \n 2: Salad \n 3: Classic \n";
-            cin >> option3;
+            std::cout << "Please select the type of item: \n";
+            std::cout << "1: Starter \n 2: Salad \n 3: Classic \n";
+            std::cin >> option3;
 
             if (option3 == 1) {
 
@@ -115,7 +124,11 @@ public:
             }
             else {
 
-                cout << "Incorrect Input: Returning to Main Menu!" << endl;
+                std::cin.clear();
+
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+                std::cout << "Incorrect Input: Returning to Main Menu!" << std::endl;
 
                 summon_interface();
             }
@@ -129,16 +142,16 @@ public:
         else if (option == 5) { //Display List of Items
 
             int option4;
-            cout << "Please select the type of item: \n";
-            cout << "1: Starter \n 2: Salad \n 3: Classic \n";
-            cin >> option4;
+            std::cout << "Please select the type of item: \n";
+            std::cout << "1: Starter \n 2: Salad \n 3: Classic \n";
+            std::cin >> option4;
 
             if (option4 == 1) {
 
                 show_starter();
 
-                cout << endl;
-                cout << endl;
+                std::cout << std::endl;
+                std::cout << std::endl;
 
                 summon_interface();
             }
@@ -147,8 +160,8 @@ public:
 
                 show_salad();
 
-                cout << endl;
-                cout << endl;
+                std::cout << std::endl;
+                std::cout << std::endl;
 
                 summon_interface();
             }
@@ -156,18 +169,33 @@ public:
 
                 show_classic();
 
-                cout << endl;
-                cout << endl;
+                std::cout << std::endl;
+                std::cout << std::endl;
 
                 summon_interface();
             }
             else { //Quit
 
-                cout << "Incorrect Input: Returning to Main Menu!" << endl;
+                std::cin.clear();
+
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+                std::cout << "Incorrect Input: Returning to Main Menu!" << std::endl;
 
                 summon_interface();
             }
         }
+        else {
+
+        std::cin.clear();
+
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+        std::cout << "Incorrect Input: Returning to Main Menu!" << std::endl;
+
+        summon_interface();
+
+}
 
     }
 
